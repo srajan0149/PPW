@@ -1,5 +1,4 @@
 body{
-	text-align: center;
 	background: linear-gradient(45deg,#f7f7f7,#d0d0d0);
 }
 #container{
@@ -9,7 +8,6 @@ body{
 }
 
 .box{
-	text-align: center;
 	border-width: 2px;
 	border-style: solid;
 	border-color: #5650ff82;
@@ -44,9 +42,18 @@ body{
 	grid-column:7/11;
 	grid-row:3;
 }
-.box :hover{
+.box:hover{
+	border-width:4px;
+	box-shadow: 0px 2px 15px #ee69df63;
 }
-.box h3{
+.box h2{
+	font-family: 'Inter', sans-serif;
+	text-align:center;
 }
-.box p{
+.content{
+	font-family: 'Rubik', sans-serif;
+	padding:10px;
+}
+.content li{
+	margin-bottom:5px;
 }
