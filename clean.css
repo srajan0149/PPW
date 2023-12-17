@@ -1,36 +1,48 @@
 body{
-	background: linear-gradient(-45deg,#ceceff,#ffc6c6);
-	display: flex;
-	flex-wrap: wrap;
+	text-align: center;
+	background: linear-gradient(45deg,#f7f7f7,#d0d0d0);
+}
+#container{
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(10,1fr);
 }
 
 .box{
 	text-align: center;
-	width: 60%;
 	border-width: 2px;
 	border-style: solid;
 	border-color: #5650ff82;
 	box-shadow: -2px 7px 15px #ee69df63;
-	margin: 2%;
+	margin: 20px;
 	border-radius: 30px;
 	padding: 10px;
 	background: linear-gradient(-45deg,#fce,#bcbaffb2);
 	color: black;
 }
+.box:first-of-type{
+	grid-column:1/8;
+	grid-row:1;
+}
 .box:nth-of-type(2){
-	width: 25%;
+	grid-column: 8/11;
+	grid-row: 1;
 }
 .box:nth-of-type(3){
-	width: 43%;
+	grid-column: 1/6;
+	grid-row: 2;
 }
 .box:nth-of-type(4){
-	width: 43%;
+	grid-column: 6/11;
+	grid-row: 2;
 }
 .box:nth-of-type(5){
-	width: 60%;
+	grid-column:1/7;
+	grid-row:3;
 }
 .box:nth-of-type(6){
-	width: 30%;
+	grid-column:7/11;
+	grid-row:3;
 }
 .box :hover{
 }
