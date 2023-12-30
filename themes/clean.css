@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter:wght@300&family=Rubik:wght@300&display=swap');
 
 #bg{
 	background: linear-gradient(#ececec,#f7f7f7);
@@ -62,6 +61,26 @@ header h3{
 	margin: 0px 7.5px 0px 7.5px;
 }
 
+footer{
+	font-family: 'IBM Plex Sans', sans-serif;
+        background: #111;
+        margin: 10px -10px -10px -10px;
+        padding: 25px;
+        text-align: center;
+}
+footer span{
+        margin-left: 3%;
+        margin-right: 3%;
+        color: #555;
+}
+footer a{
+        font-style: normal;
+        text-decoration: none;
+        color: #555;
+}
+footer a:hover{
+        text-decoration: underline;
+}
 
 @media (orientation: landscape){
 	#container{
@@ -94,4 +113,3 @@ header h3{
 		grid-row:3;
 	}
 }
-
