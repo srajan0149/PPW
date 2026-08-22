@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+            rel="stylesheet"
+        />
+        <link href="/style.css" rel="stylesheet" />
+        <script src="/main.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <header>
+            <h1>blog init</h1>
+            <menu>
+                <!--<span><a href="/about_me.html">About Me</a></span>-->
+                <span><a href="/blogs/index.html">Blogs</a></span>
+            </menu>
+        </header>
+        <p>
+            TLDR; My first blog is about integer overflow in Polars - a Rust
+            based alternative to Pandas. Somehow I spent hours on debugging 
+            why some statistics result when used polars directly on the whole 
+            terabyte scale data gave me wrong output. It was skill issue.
+        </p>
+        <p>
+            This is my first blog, I do not exactly know what to write but I
+            have some idea - Integer Overflow in Polars. But for the context,
+            first I need you to meet Polars.
+        </p>
+        <h2>Polars</h2>
+        <p>
+            Polars is basically Pandas on steroids.
+        </p>
+        <p>
+            It is a Rust based library for data manipulation. What does Rust
+            based mean? Well firstly that it is written in Rust, secondly it
+            will have stricter type contraints and third which is well obvious
+            to Rustaceans, it would have fearless concurrency.
+        </p>
+        <p>
+            It is that streaming enabled fearless concurrency that makes it so
+            popular for large scale data processing in single machine. Streaming
+            - basically you dont read all the data at once, you process as you
+            read. While Pandas reads the whole data at once, Polars provides you
+            apis to its streaming engine, enabling a wide variety of operations
+            without loading all the data into memory.
+        </p>
+        <h2>Integer Overflow</h2>
+        <p>
+            Generally, when doing things in Python, we dont care about integer 
+            overflows or underflows. And so when I used Polars in Python, I also
+            did not think much about these issues. Although in the back of my
+            mind, I knew that these things are there. I had also tried some Rust
+            beforehand, so I am somewhat familiar with its type system and crazy
+            rules to make everything right. So cool!
+        </p>
+        <p>
+            So in Rust, there are two modes through which you can compile your 
+            programs. First one is development or debugging mode, where the compile
+            time is short, and you get to try things quickly. In addition to this
+            in development mode, the compiler adds runtime checks for things like
+            underflows and overflows and crashes the program. The compiler does
+            this so the programmer does not introduce the bug in the program by
+            mistake. But once you compile the program in production mode, some of
+            those checks are removed to optimize your program. Still, unlike C,
+            the behaviour of these sublte bugs is properly defined in Rust. If you
+            ask the C programmer when underflow occurrs, chances are that they say 
+            "undefined behavious" - that is, it is very much compiler dependent.
+            So you can actually say that the bug is a feature, since its scope is
+            defined by the Rust itself.
+        <p>
+        <h2>Fix</h2>
+        <p> Its quite simple.
+            When working with big data in typed languages, always make sure to
+            have all your counters, accumulators, or any other in-between variables
+            to have a type which can hold your hands and does not betray you when
+            your manager asks for the details.
+        </p>
+        <p>
+            Although it not always simple as that.
+            In Python Polars, it is somewhat difficult to get the types of all the
+            intermediaries, like the length of strings, until you actually log the
+            type from the schema. But still you wont know, what was the datatype 
+            that was internally used for something. So my simple suggestion is - 
+            whenever you work with large numbers, please cast them to int64. That is
+            for your sake. Then you wont have to spend two hours figuring out what was
+            wrong in your pipeline.
+        </p>
+        <p>
+            I think this is enough for my first blog. Thanks for reading and try out
+            Polars. Its really blazingly fast!!
+        </p>
+    </body>
+</html>
